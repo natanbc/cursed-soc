@@ -1,0 +1,21 @@
+[project]
+name = "cursed-soc"
+version = "0.1.0"
+description = ""
+
+requires-python = "~=3.8"
+dependencies = [
+    "amaranth[builtin-yosys] @ git+https://github.com/amaranth-lang/amaranth",
+    "amaranth-boards @ git+https://github.com/amaranth-lang/amaranth-boards",
+    "amaranth-soc @ git+https://github.com/amaranth-lang/amaranth-soc",
+]
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[tool.pdm.build]
+includes = ["cursed_soc/"]
+
+[tool.pdm.scripts]
+test = { cmd = "python -m unittest discover -t . -s tests -v" }
