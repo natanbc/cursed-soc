@@ -147,10 +147,10 @@ fn main() {
             let syms = syms;
 
             let process_relocation = move |r_type: u32, r_sym: u32, r_offset: u64, r_addend: i64| {
-                trace!("Resolving RELA {} at 0x{:X} to sym({}) + {}", riscv_rel_name(r_type), r_offset, r_sym, r_addend);
+                trace!("Resolving relocation {} at 0x{:X} to sym({}) + {}", riscv_rel_name(r_type), r_offset, r_sym, r_addend);
                 let (sym_virt, sym_name) = *syms.get(r_sym as usize).expect("Symbol not found");
                 debug!(
-                    "Resolving RELA {} at 0x{:X} to sym({})+{}",
+                    "Resolving relocation {} at 0x{:X} to sym({})+{}",
                     riscv_rel_name(r_type),
                     r_offset,
                     string_table.as_ref().map(|s| s.get(sym_name as usize).unwrap()).unwrap_or("UNK"),
